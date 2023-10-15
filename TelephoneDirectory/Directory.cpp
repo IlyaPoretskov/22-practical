@@ -17,18 +17,25 @@ void share_string(string n, string& a, string& b, char sharer = ' ')
 {
     int i = 0;
 
-    while (n[i] != sharer)  a += n[i]; i++;
+    while (n[i] != sharer) 
+    {
+        a += n[i]; 
+        i++;
+    }
 
     i++;
 
-    while (i < n.length()) b += n[i]; i++;
+    while (i < n.length()) 
+    {
+        b += n[i]; 
+        i++;
+    }
 }
 
 int main()
 {
-    map <string, string> directory = {{"68-86-96",     "Ilya"},
-                                      {"39-11-16", "Gennadiy"},
-                                      {"55-53-55",     "Petr"}};
+    map <string, string> directory;
+    map <string, string> directoryBackwards;
 
     while (true)
     {
@@ -40,18 +47,19 @@ int main()
         {
             string name, telephone;
 
-            share_string(request, name, telephone);
+            share_string(request, telephone, name);
 
             directory.insert({telephone, name});
+            directoryBackwards.insert({name, telephone});
         } else
         {
             if (is_find_elem(request, '-'))
             {
-                cout << directory.at(request) << endl;
-            } else
+                cout << directory.find(request)->second << endl;
+            } 
+            else
             {
-                map<string, string>::iterator it = directory.find(request);
-                cout << it->second << endl;
+                cout << directoryBackwards.find(request)->second << endl;
             }
         }
     }
