@@ -16,8 +16,7 @@ bool is_anagrams(string first, string second)
         firstMap.insert({first[i], first[i]});
         secondMap.insert({second[i], second[i]});
     }
-    if (firstMap != secondMap)    return false;
-    else  return true;
+    return firstMap == secondMap;
 }
 
 int main()
